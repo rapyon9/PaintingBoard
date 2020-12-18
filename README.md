@@ -1,2 +1,3 @@
 # PaintingBoard
- Painting board with vanilaJS
+
+Painting board with vanilaJS.
