@@ -7,9 +7,12 @@ ctx.strokeStyle = "#2c2c2c";
 ctx.lineWidth = 2.5;
 
 const colors = document.getElementsByClassName("jsColor");
+const range = document.getElementById("jsRange");
+const mode = document.getElementById("jsMode");
 
 
 let painting = false;
+let filling = false;
 
 
 function startPainting(){
@@ -37,6 +40,21 @@ function handleColorClick(event){
     ctx.strokeStyle = event.target.style.backgroundColor;
 }
 
+function handleRangeChange(event){
+    const size = event.target.value;
+    ctx.lineWidth = size;
+}
+
+function handleModeClick(){
+    if(!filling){
+        filling = true;
+        mode.innerText = "Paint";
+    } else {
+        filling = false;
+        mode.innerText = "FILL";   
+    }
+}
+
 //캔버스 위에서
 if(canvas){
     //마우스를 올려다놓을때
@@ -52,3 +70,11 @@ if(canvas){
 Array.from(colors).forEach(color => {
     color.addEventListener("click", handleColorClick);
 });
+
+if(range){
+    range.addEventListener("input", handleRangeChange);
+}
+
+if(mode){
+    mode.addEventListener("click", handleModeClick);
+}
