@@ -6,6 +6,8 @@ const ctx = canvas.getContext("2d");
 ctx.strokeStyle = "#2c2c2c";
 ctx.lineWidth = 2.5;
 
+const colors = document.getElementsByClassName("jsColor");
+
 
 let painting = false;
 
@@ -31,6 +33,9 @@ function onMouseMove(event) {
     }
 }
 
+function handleColorClick(event){
+    ctx.strokeStyle = event.target.style.backgroundColor;
+}
 
 //캔버스 위에서
 if(canvas){
@@ -43,3 +48,7 @@ if(canvas){
     //마우스가 캔버스 밖으로 나갔을때
     canvas.addEventListener("mouseleave", stopPainting);
 }
+
+Array.from(colors).forEach(color => {
+    color.addEventListener("click", handleColorClick);
+});
